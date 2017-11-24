@@ -1,1 +1,4 @@
-theme: jekyll-theme-architect
+deploy:
+  type: git
+  repo: https://github.com/niuqiann/niuqiann.github.io.git
+  branch: master
