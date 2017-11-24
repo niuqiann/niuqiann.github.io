@@ -1,2 +1,2 @@
-# niuqian.github.com
+# niuqian.github.io
 test
