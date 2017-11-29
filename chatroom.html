@@ -19,14 +19,14 @@
 		token: '6eb33f755d4464000edbd03f1ea6a87e'
 	});
 	var address = "";
-	nim.getChatroomAddress({
+	/*nim.getChatroomAddress({
 		chatroomId: '19431861',
 		done: getChatroomAddressDone
-	});
+	});*/
 	function getChatroomAddressDone(error, obj) {
 		console.log('获取聊天室地址' + (!error?'成功':'失败'), error, obj);
 		if(!error){
-			address = obj;
+			address = obj.address;
 			console.log(address);
 		}
 	}
