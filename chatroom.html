@@ -26,7 +26,7 @@
 	function getChatroomAddressDone(error, obj) {
 		console.log('获取聊天室地址' + (!error?'成功':'失败'), error, obj);
 		if(!error){
-			address = obj.common.link
+			address = obj;
 			console.log(address);
 		}
 	}
