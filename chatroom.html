@@ -13,38 +13,47 @@
 <script src="NIM_Web_Chatroom_v4.5.0.js"></script>
 <script type="text/javascript">
 	var nim = NIM.getInstance({
-	debug:true,
-		appKey: '0b4ad5bf42cf98254940d326bfa5aa0e',
-		account: 'hr_8047914',
-		token: '6eb33f755d4464000edbd03f1ea6a87e'
-	});
-	var address = "";
-	/*nim.getChatroomAddress({
-		chatroomId: '19431861',
-		done: getChatroomAddressDone
-	});*/
-	function getChatroomAddressDone(error, obj) {
-		console.log('获取聊天室地址' + (!error?'成功':'失败'), error, obj);
-		if(!error){
-			address = obj.address;
-			console.log(address);
-		}
-	}
-	
-	/*var chatroom = Chatroom.getInstance({
 		debug:true,
 		appKey: '0b4ad5bf42cf98254940d326bfa5aa0e',
 		account: 'hr_8047914',
 		token: '6eb33f755d4464000edbd03f1ea6a87e',
-		chatroomId: '19431861',
-		chatroomAddresses: ["weblink05.netease.im:443","weblink06.netease.im:443"],//,address
-		onconnect: onChatroomConnect,
-		onerror: onChatroomError,
-		onwillreconnect: onChatroomWillReconnect,
-		ondisconnect: onChatroomDisconnect,
-		// 消息
-		onmsgs: onChatroomMsgs
+		onconnect: onConnect,
 	});
+	
+	var chatroom;
+	
+	function onConnect(){
+		nim.getChatroomAddress({
+			chatroomId: '19431861',
+			done: getChatroomAddressDone
+		});
+	}
+	
+	function getChatroomAddressDone(error, obj) {
+		console.log('获取聊天室地址' + (!error?'成功':'失败'), error, obj);
+		if(!error){
+			initChatroom(obj.address);
+		}
+	}
+	
+	function initChatroom(address){
+		var chatroom = Chatroom.getInstance({
+			debug:true,
+			appKey: '0b4ad5bf42cf98254940d326bfa5aa0e',
+			account: 'hr_8047914',
+			token: '6eb33f755d4464000edbd03f1ea6a87e',
+			chatroomId: '19431861',
+			chatroomAddresses: address,
+			onconnect: onChatroomConnect,
+			onerror: onChatroomError,
+			onwillreconnect: onChatroomWillReconnect,
+			ondisconnect: onChatroomDisconnect,
+			// 消息
+			onmsgs: onChatroomMsgs
+		});
+	}
+	
+	
 	function onChatroomConnect(chatroom) {
 		console.log('进入聊天室', chatroom);
 	}
@@ -73,8 +82,6 @@
 	}
 	function onChatroomMsgs(msgs) {
 		console.log('收到聊天室消息', msgs);
-	}*/
-	
-	//
+	}
 </script>
 </html>
